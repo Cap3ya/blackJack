@@ -95,6 +95,10 @@ function main() {
 
     while (true) {
 
+        // Remet cartes à zéro
+        joueur.cartes = []
+        dealer.cartes = []
+
         // Donner deux cartes au joueur
         joueur.prendUneCarte(jeuDeCartes);
         joueur.prendUneCarte(jeuDeCartes);
@@ -109,7 +113,7 @@ function main() {
             }
 
             if (dealer.compteDesPoints() < 17) {
-                dealer.prendUneCarte(jeuDeCartes); 
+                dealer.prendUneCarte(jeuDeCartes);
             }
 
             alert(
@@ -132,16 +136,23 @@ function main() {
 
 
         if (joueur.compteDesPoints() > 21) {
-            alert("Mise Perdu")
+            alert(`${joueur.compteDesPoints()} > 21: Tu as perdu ta mise`)
         }
         else if (joueur.compteDesPoints() == 21) {
-            alert("Tu as gagné 1.5x ta mise !")
-        }
-        else if (joueur.compteDesPoints() > dealer.compteDesPoints()) {
-            alert("Tu as gagné 1x ta mise !")
+            alert(`${joueur.compteDesPoints()} = 21: Tu as gagné 1.5x ta mise`)
         }
         else {
-            alert("Mise Perdu")
+            if (dealer.compteDesPoints > 21) {
+                alert(`Tu as gagné 1x ta mise`)
+            }
+            else {
+                if (joueur.compteDesPoints() > dealer.compteDesPoints()) {
+                    alert(`${joueur.compteDesPoints()} > ${dealer.compteDesPoints}: Tu as gagné 1x ta mise`)
+                }
+                else {
+                    alert(`${joueur.compteDesPoints()} < ${dealer.compteDesPoints}: Tu as perdu ta mise`)
+                }
+            }
         }
 
         const decision = prompt("Rejouer ? (y/n)");

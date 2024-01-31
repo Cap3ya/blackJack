@@ -46,7 +46,7 @@ console.log("Compte Manuel", carteDuJoueur[0].valeur + carteDuJoueur[1].valeur +
 
 function compteDesCartes(cartesDuJoueur) {
 
-    return cartesDuJoueur.reduce((pre, cur) => pre + cur.valeur, 0);
+    return cartesDuJoueur.reduce((prev, curr) => prev + curr.valeur, 0);
 }
 
 console.log("Compte Function", compteDesCartes(carteDuJoueur))

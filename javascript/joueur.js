@@ -14,18 +14,21 @@ class Joueur {
         // Si carte est valeur AS
         if (carte.valeur === "as") {
             // Définir si point est 11 ou 1 selon points joueur
-            if (this.compteDesPoints(this.cartes) + carte.point[0] > 21) {
+            if (this.points + carte.point[0] > 21) {
                 carte.point = carte.point[1]; // vaut 1
             }
             else {
                 carte.point = carte.point[0]; // vaut 11
             }
         }
+
+        this.points += carte.point;
         this.cartes.push(carte);
     }
 
-    compteDesPoints() {
-        return this.cartes.reduce((prev, curr) => prev + curr.point, 0);
+    reset() {
+        this.cartes = [];
+        this.points = 0; 
     }
 }
 

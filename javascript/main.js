@@ -10,9 +10,9 @@ function main() {
 
     while (true) {
 
-        // Remet cartes à zéro
-        joueur.cartes = []
-        dealer.cartes = []
+        // Remet cartes et points à zéro
+        joueur.reset();
+        dealer.reset();
 
         // Donner deux cartes au joueur
         joueur.prendUneCarte(jeuDeCartes);
@@ -23,17 +23,17 @@ function main() {
 
         while (true) {
 
-            if (joueur.compteDesPoints() > 21) {
+            if (joueur.points > 21) {
                 break // PERDU
             }
 
-            if (dealer.compteDesPoints() < 17) {
+            if (dealer.points < 17) {
                 dealer.prendUneCarte(jeuDeCartes);
             }
 
             alert(
-                "\nCompte Carte Joueur: " + joueur.compteDesPoints() +
-                "\nCompte Carte Dealer: " + dealer.compteDesPoints() +
+                "\nCompte Carte Joueur: " + joueur.points +
+                "\nCompte Carte Dealer: " + dealer.points +
                 "\nNbr carte restantes: " + jeuDeCartes.length
             )
 
@@ -49,22 +49,22 @@ function main() {
             }
         }
 
-        if (joueur.compteDesPoints() > 21) {
-            alert(`${joueur.compteDesPoints()} > 21: Tu as perdu ta mise`)
+        if (joueur.points > 21) {
+            alert(`${joueur.points} > 21: Tu as perdu ta mise`)
         }
-        else if (joueur.compteDesPoints() == 21) {
-            alert(`${joueur.compteDesPoints()} = 21: Tu as gagné 1.5x ta mise`)
+        else if (joueur.points == 21) {
+            alert(`${joueur.points} = 21: Tu as gagné 1.5x ta mise`)
         }
         else {
-            if (dealer.compteDesPoints > 21) {
+            if (dealer.points > 21) {
                 alert(`Tu as gagné 1x ta mise`)
             }
             else {
-                if (joueur.compteDesPoints() > dealer.compteDesPoints()) {
-                    alert(`${joueur.compteDesPoints()} > ${dealer.compteDesPoints()}: Tu as gagné 1x ta mise`)
+                if (joueur.points > dealer.points) {
+                    alert(`${joueur.points} > ${dealer.points}: Tu as gagné 1x ta mise`)
                 }
                 else {
-                    alert(`${joueur.compteDesPoints()} < ${dealer.compteDesPoints()}: Tu as perdu ta mise`)
+                    alert(`${joueur.points} < ${dealer.points}: Tu as perdu ta mise`)
                 }
             }
         }

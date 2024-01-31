@@ -17,7 +17,7 @@ function nouveauJeudeCartes() {
     return jeuDeCartes
 }
 
-function extraireUneCarte(jeuDeCarte) {
+function donneruneCarte(jeuDeCarte) {
     const length = jeuDeCarte.length;
     const index = Math.floor(length * Math.random());
 
@@ -33,14 +33,14 @@ function compteDesCartes(cartesDuJoueur) {
 
 const jeuDeCarte = nouveauJeudeCartes();
 console.log(jeuDeCarte)
-const carte = extraireUneCarte(jeuDeCarte);
+const carte = donneruneCarte(jeuDeCarte);
 console.log(carte)
 
 carteDuJoueur = []
 
-carteDuJoueur.push(extraireUneCarte(jeuDeCarte));
-carteDuJoueur.push(extraireUneCarte(jeuDeCarte));
-carteDuJoueur.push(extraireUneCarte(jeuDeCarte));
+carteDuJoueur.push(donneruneCarte(jeuDeCarte));
+carteDuJoueur.push(donneruneCarte(jeuDeCarte));
+carteDuJoueur.push(donneruneCarte(jeuDeCarte));
 
 console.log("Compte Manuel", carteDuJoueur[0].valeur + carteDuJoueur[1].valeur + carteDuJoueur[2].valeur)
 

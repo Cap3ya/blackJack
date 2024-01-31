@@ -58,8 +58,5 @@ function hasBlackjack(compteDesCartes) {
 console.log("A Blackjack", hasBlackjack(compteDesCartes(carteDuJoueur)))
 
 function beatTheDealer(compteDesCartesJoueur, compteDesCartesDealer) {
-    if (compteDesCartesJoueur === compteDesCartesDealer) {
-        return false;
-    }
     return compteDesCartesJoueur > compteDesCartesDealer;
 }

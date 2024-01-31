@@ -1,7 +1,7 @@
 function nouveauJeuDeCartes() {
     const enseignes = ['coeur', 'carreaux', 'trefle', 'pique'];
     const valeurs_points = [
-        ["as", [11, 1] ], // vaut 11 points si possible (total < 21) sinon 1 point 
+        ["as", [11, 1]], // vaut 11 points si possible (total < 21) sinon 1 point 
         ["deux", 2],
         ["trois", 3],
         ["quatre", 4],
@@ -35,9 +35,20 @@ function nouveauJeuDeCartes() {
 
 function donnerUneCarte(jeuDeCarte) {
     const length = jeuDeCarte.length;
-    const index = Math.floor(length * Math.random());
+    const indice = Math.floor(length * Math.random());
 
-    return jeuDeCarte.splice(index, 1)[0];
+    const carte = jeuDeCarte.splice(indice, 1)[0];
+    // Si carte est AS alors définir si point est 1 ou 11
+    if (carte.valeur === "as") {
+        if (compteDesCartes(cartesDuJoueur) + carte.point[0] > 21) {
+            carte.point = carte.point[1];
+        }
+        else {
+            carte.point = carte.point[0];
+        }
+    }
+
+    return carte;
 }
 
 function compteDesCartes(cartesDuJoueur) {

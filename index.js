@@ -17,15 +17,11 @@ function nouveauJeudeCartes() {
     return jeuDeCartes
 }
 
-function donneruneCarte(jeuDeCarte) {
+function donnerUneCarte(jeuDeCarte) {
     const length = jeuDeCarte.length;
     const index = Math.floor(length * Math.random());
 
     return jeuDeCarte.splice(index, 1)[0];
-}
-
-function compteDesCartes(cartesDuJoueur) {
-    return cartesDuJoueur.reduce((pre, carte) => pre + carte.value, 0);
 }
 
 function compteDesCartes(cartesDuJoueur) {
@@ -43,23 +39,24 @@ function beatTheDealer(compteDesCartesJoueur, compteDesCartesDealer) {
 //hasBlackjack(compteDesCartes(carteDuJoueur));
 //beatTheDealer(compteDesCartes(carteDuJoueur), compteDesCartes(carteDuDealer));
 
-
-
 function main() {
 
     cartesDuJoueur = []
     const jeuDeCartes = nouveauJeudeCartes();
     while (true) {
 
-        const decision = prompt("Tu veux une Carte ?");
-        if (decision === "yes") {
-            cartesDuJoueur.push(donneruneCarte(jeuDeCartes))
+        const decision = prompt("Tu veux une Carte ? (y/n)");
+        if (decision === "y") {
+            cartesDuJoueur.push(donnerUneCarte(jeuDeCartes))
+            console.log("carte reçu: ", cartesDuJoueur.at(-1))
+            console.log("nbr carte joueur: ", cartesDuJoueur.length)
+            console.log("nbr carte jeu de cartes: ", jeuDeCartes.length)
         }
 
-        console.log("Compte Carte Joueur: ", compteDesCartes(jeuDeCartes))
+        console.log("Compte Carte Joueur: ", compteDesCartes(cartesDuJoueur));
 
-        if (decision === "no" || compteDesCartes(cartesDuJoueur) > 21) {
-            // PARTIE PERDU FINISH
+        if (decision === "n" || compteDesCartes(cartesDuJoueur) > 21) {
+            console.log("Bye bye");
             break;
         }
     }

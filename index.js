@@ -47,16 +47,18 @@ function beatTheDealer(compteDesCartesJoueur, compteDesCartesDealer) {
 
 function main() {
 
-    carteDuJoueur = []
-    const jeuDeCarte = nouveauJeudeCartes();
+    cartesDuJoueur = []
+    const jeuDeCartes = nouveauJeudeCartes();
     while (true) {
 
         const decision = prompt("Tu veux une Carte ?");
         if (decision === "yes") {
-            carteDuJoueur.push(donneruneCarte(jeuDeCarte))
+            cartesDuJoueur.push(donneruneCarte(jeuDeCartes))
         }
 
-        if (decision === "no" || compteDesCartes(carteDuJoueur) > 21) {
+        console.log("Compte Carte Joueur: ", compteDesCartes(jeuDeCartes))
+
+        if (decision === "no" || compteDesCartes(cartesDuJoueur) > 21) {
             // PARTIE PERDU FINISH
             break;
         }

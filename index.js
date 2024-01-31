@@ -25,38 +25,42 @@ function donneruneCarte(jeuDeCarte) {
 }
 
 function compteDesCartes(cartesDuJoueur) {
-
-    const compte = cartesDuJoueur.reduce((pre, carte) => pre + carte.value, 0)
-
-    return compte;
+    return cartesDuJoueur.reduce((pre, carte) => pre + carte.value, 0);
 }
-
-const jeuDeCarte = nouveauJeudeCartes();
-console.log(jeuDeCarte)
-const carte = donneruneCarte(jeuDeCarte);
-console.log(carte)
-
-carteDuJoueur = []
-
-carteDuJoueur.push(donneruneCarte(jeuDeCarte));
-carteDuJoueur.push(donneruneCarte(jeuDeCarte));
-carteDuJoueur.push(donneruneCarte(jeuDeCarte));
-
-console.log("Compte Manuel", carteDuJoueur[0].valeur + carteDuJoueur[1].valeur + carteDuJoueur[2].valeur)
 
 function compteDesCartes(cartesDuJoueur) {
-
     return cartesDuJoueur.reduce((prev, curr) => prev + curr.valeur, 0);
 }
-
-console.log("Compte Function", compteDesCartes(carteDuJoueur))
 
 function hasBlackjack(compteDesCartes) {
     return compteDesCartes === 21
 }
 
-console.log("A Blackjack", hasBlackjack(compteDesCartes(carteDuJoueur)))
-
 function beatTheDealer(compteDesCartesJoueur, compteDesCartesDealer) {
     return compteDesCartesJoueur > compteDesCartesDealer;
 }
+
+//hasBlackjack(compteDesCartes(carteDuJoueur));
+//beatTheDealer(compteDesCartes(carteDuJoueur), compteDesCartes(carteDuDealer));
+
+
+
+function main() {
+
+    carteDuJoueur = []
+    const jeuDeCarte = nouveauJeudeCartes();
+    while (true) {
+
+        const decision = prompt("Tu veux une Carte ?");
+        if (decision === "yes") {
+            carteDuJoueur.push(donneruneCarte(jeuDeCarte))
+        }
+
+        if (decision === "no" || compteDesCartes(carteDuJoueur) > 21) {
+            // PARTIE PERDU FINISH
+            break;
+        }
+    }
+}
+
+main()

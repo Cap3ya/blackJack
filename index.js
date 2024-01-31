@@ -52,16 +52,10 @@ function compteDesCartes(cartesDuJoueur) {
 console.log("Compte Function", compteDesCartes(carteDuJoueur))
 
 function hasBlackjack(compteDesCartes) {
-    if (compteDesCartes > 21) {
-        return false;
-    }
-
-    else if (compteDesCartes === 21) {
-        return true;
-    }
+    return compteDesCartes === 21
 }
 
-console.log("A Blackjack", blackjack(compteDesCartes(cartesDuJoueur)))
+console.log("A Blackjack", hasBlackjack(compteDesCartes(carteDuJoueur)))
 
 function beatTheDealer(compteDesCartesJoueur, compteDesCartesDealer) {
     if (compteDesCartesJoueur === compteDesCartesDealer) {

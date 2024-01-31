@@ -55,41 +55,71 @@ function compteDesCartes(cartesDuJoueur) {
     return cartesDuJoueur.reduce((prev, curr) => prev + curr.point, 0);
 }
 
+class Joueur {
+    constructor() {
+        this.cartes = [];
+        this.points = 0;
+        this.cagnotte = 1000;
+    }
+
+    prendUneCarte(jeuDeCartes) {
+        const nbrCarteRestantes = jeuDeCartes.length;
+        const indice = Math.floor(nbrCarteRestantes * Math.random());
+
+        // Retire une carte du jeu de cartes
+        const carte = jeuDeCartes.splice(indice, 1)[0];
+        // Si carte est valeur AS
+        if (carte.valeur === "as") {
+            // Définir si point est 11 ou 1 selon points joueur
+            if (compteDesCartes(this.cartes) + carte.point[0] > 21) {
+                carte.point = carte.point[1]; // vaut 1
+            }
+            else {
+                carte.point = carte.point[0]; // vaut 11
+            }
+        }
+        this.cartes.push(carte);
+    }
+
+    compteDesPoints() {
+        return this.cartes.reduce((prev, curr) => prev + curr.point, 0);
+    }
+}
+
 function main() {
 
-    bankrollDuJoueur = 1000;
+    const dealer = new Joueur();
+    const joueur = new Joueur();
 
     const jeuDeCartes = nouveauJeuDeCartes();
 
     while (true) {
 
-        cartesDuDealer = []
-        cartesDuJoueur = []
-
         // Donner deux cartes au joueur
-        cartesDuJoueur.push(donnerUneCarte(jeuDeCartes));
-        cartesDuJoueur.push(donnerUneCarte(jeuDeCartes));
+        joueur.prendUneCarte(jeuDeCartes);
+        joueur.prendUneCarte(jeuDeCartes);
+
         // Donner deux cartes au dealer (2eme dans la boucle)
-        cartesDuDealer.push(donnerUneCarte(jeuDeCartes));
+        dealer.prendUneCarte(jeuDeCartes);
 
         while (true) {
 
-            if (compteDesCartes(cartesDuJoueur) > 21) {
+            if (joueur.compteDesPoints() > 21) {
                 break // PERDU
             }
 
-            if (compteDesCartes(cartesDuDealer) < 17) {
-                cartesDuDealer.push(donnerUneCarte(jeuDeCartes));
+            if (dealer.compteDesPoints() < 17) {
+                dealer.prendUneCarte(jeuDeCartes); 
             }
 
             alert(
-                "\nCompte Carte Joueur: " + compteDesCartes(cartesDuJoueur) +
-                "\nCompte Carte Dealer: " + compteDesCartes(cartesDuDealer)
+                "\nCompte Carte Joueur: " + joueur.compteDesPoints() +
+                "\nCompte Carte Dealer: " + dealer.compteDesPoints()
             )
 
             const decision = prompt("Tu veux une carte ? (y/n)");
             if (decision === "y") {
-                cartesDuJoueur.push(donnerUneCarte(jeuDeCartes))
+                joueur.prendUneCarte(jeuDeCartes)
             }
             else if (decision === "n") {
                 break; // Sortir du while
@@ -101,14 +131,13 @@ function main() {
         }
 
 
-        if (compteDesCartes(cartesDuJoueur) > 21) {
-
+        if (joueur.compteDesPoints() > 21) {
             alert("Mise Perdu")
         }
-        else if (compteDesCartes(cartesDuJoueur) == 21) {
+        else if (joueur.compteDesPoints() == 21) {
             alert("Tu as gagné 1.5x ta mise !")
         }
-        else if (compteDesCartes(cartesDuJoueur) > compteDesCartes(cartesDuDealer)) {
+        else if (joueur.compteDesPoints() > dealer.compteDesPoints()) {
             alert("Tu as gagné 1x ta mise !")
         }
         else {

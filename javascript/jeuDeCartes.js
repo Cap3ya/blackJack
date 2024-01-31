@@ -25,7 +25,7 @@ function nouveauJeuDeCartes() {
                 enseigne: enseigne,
                 valeur: valeur,
                 point: point,
-                href: `/images/cartes/${enseigne}-${valeur}.svg`
+                src: `/images/cartes/${enseigne}-${valeur}.svg`
             };
             jeuDeCartes.push(carte);
         }

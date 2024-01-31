@@ -1,3 +1,4 @@
+import dom from "./dom.js";
 import Joueur from "./joueur.js";
 import nouveauJeuDeCartes from "./jeuDeCartes.js";
 
@@ -5,14 +6,15 @@ function main() {
 
     const jeuDeCartes = nouveauJeuDeCartes();
 
-    const dealer = new Joueur();
-    const joueur = new Joueur();
+    const dealer = new Joueur("dealer");
+    const joueur = new Joueur("joueur");
 
     while (true) {
 
         // Remet cartes et points à zéro
         joueur.reset();
         dealer.reset();
+        dom.reset();
 
         // Donner deux cartes au joueur
         joueur.prendUneCarte(jeuDeCartes);
@@ -77,3 +79,4 @@ function main() {
 }
 
 main()
+

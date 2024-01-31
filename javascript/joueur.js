@@ -1,5 +1,8 @@
+import dom from "./dom.js";
+
 class Joueur {
-    constructor() {
+    constructor(name) {
+        this.name = name
         this.cartes = [];
         this.points = 0;
         this.cagnotte = 1000;
@@ -24,11 +27,18 @@ class Joueur {
 
         this.points += carte.point;
         this.cartes.push(carte);
+        
+        if (this.name === "joueur") [
+            dom.appendCartesJoueur(carte)
+        ]
+        else if (this.name === "dealer") {
+            dom.appendCartesDealer(carte)
+        }
     }
 
     reset() {
         this.cartes = [];
-        this.points = 0; 
+        this.points = 0;
     }
 }
 

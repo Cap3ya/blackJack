@@ -48,17 +48,21 @@ function main() {
         const decision = prompt("Tu veux une Carte ? (y/n)");
         if (decision === "y") {
             cartesDuJoueur.push(donnerUneCarte(jeuDeCartes))
-            console.log("carte reçu: ", cartesDuJoueur.at(-1))
-            console.log("nbr carte joueur: ", cartesDuJoueur.length)
-            console.log("nbr carte jeu de cartes: ", jeuDeCartes.length)
         }
 
-        console.log("Compte Carte Joueur: ", compteDesCartes(cartesDuJoueur));
-
-        if (decision === "n" || compteDesCartes(cartesDuJoueur) > 21) {
+        else if (decision === "n" || compteDesCartes(cartesDuJoueur) > 21) {
             console.log("Bye bye");
             break;
         }
+
+        else {
+            console.log("WARNING! Command " + decision + "n'existe pas.")
+        }
+
+        console.log("Compte Carte Joueur: ", compteDesCartes(cartesDuJoueur));
+        console.log("carte reçu: ", cartesDuJoueur.at(-1))
+        console.log("nbr carte joueur: ", cartesDuJoueur.length)
+        console.log("nbr carte jeu de cartes: ", jeuDeCartes.length)
     }
 }
 

@@ -1,0 +1,10 @@
+.cartes {
+    width: 100%;
+    height: 20vh;
+    border: 1px solid black;
+    & > img {
+        margin-left: 1em;
+        height: 20vh;
+        width: auto;
+    }
+}

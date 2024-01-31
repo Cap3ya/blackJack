@@ -33,7 +33,8 @@ function main() {
 
             alert(
                 "\nCompte Carte Joueur: " + joueur.compteDesPoints() +
-                "\nCompte Carte Dealer: " + dealer.compteDesPoints()
+                "\nCompte Carte Dealer: " + dealer.compteDesPoints() +
+                "\nNbr carte restantes: " + jeuDeCartes.length
             )
 
             const decision = prompt("Tu veux une carte ? (y/n)");

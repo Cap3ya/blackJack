@@ -1,5 +1,3 @@
-import { compteDesCartes } from "./helpers.js";
-
 class Joueur {
     constructor() {
         this.cartes = [];
@@ -16,7 +14,7 @@ class Joueur {
         // Si carte est valeur AS
         if (carte.valeur === "as") {
             // Définir si point est 11 ou 1 selon points joueur
-            if (compteDesCartes(this.cartes) + carte.point[0] > 21) {
+            if (this.compteDesPoints(this.cartes) + carte.point[0] > 21) {
                 carte.point = carte.point[1]; // vaut 1
             }
             else {

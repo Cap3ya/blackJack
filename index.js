@@ -1,14 +1,30 @@
-function nouveauJeudeCartes() {
-    const symboles = ['Cœur', 'Carreau', 'Trèfle', 'Pique'];
-    const valeurs = [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
+function nouveauJeuDeCartes() {
+    const enseignes = ['coeur', 'carreaux', 'trefle', 'pique'];
+    const valeurs_points = [
+        ["as", [11, 1] ], // vaut 11 points si possible (total < 21) sinon 1 point 
+        ["deux", 2],
+        ["trois", 3],
+        ["quatre", 4],
+        ["cinq", 5],
+        ["six", 6],
+        ["sept", 7],
+        ["huit", 8],
+        ["neuf", 9],
+        ["dix", 10],
+        ["valet", 10],
+        ["dame", 10],
+        ["roi", 10],
+    ]
 
     const jeuDeCartes = [];
 
-    for (const symbole of symboles) {
-        for (const valeur of valeurs) {
+    for (const enseigne of enseignes) {
+        for (const [valeur, point] of valeurs_points) {
             const carte = {
-                symbole: symbole,
-                valeur: valeur
+                enseigne: enseigne,
+                valeur: valeur,
+                point: point,
+                href: `/images/cartes/${enseigne}-${valeur}.svg`
             };
             jeuDeCartes.push(carte);
         }
@@ -42,7 +58,7 @@ function beatTheDealer(compteDesCartesJoueur, compteDesCartesDealer) {
 function main() {
 
     cartesDuJoueur = []
-    const jeuDeCartes = nouveauJeudeCartes();
+    const jeuDeCartes = nouveauJeuDeCartes();
     while (true) {
 
         const decision = prompt("Tu veux une Carte ? (y/n)");

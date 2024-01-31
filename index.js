@@ -125,7 +125,7 @@ function main() {
             if (decision === "y") {
                 joueur.prendUneCarte(jeuDeCartes)
             }
-            else if (decision === "n") {
+            else if (decision === "n" || decision == null) {
                 break; // Sortir du while
             }
             else {
@@ -147,16 +147,16 @@ function main() {
             }
             else {
                 if (joueur.compteDesPoints() > dealer.compteDesPoints()) {
-                    alert(`${joueur.compteDesPoints()} > ${dealer.compteDesPoints}: Tu as gagné 1x ta mise`)
+                    alert(`${joueur.compteDesPoints()} > ${dealer.compteDesPoints()}: Tu as gagné 1x ta mise`)
                 }
                 else {
-                    alert(`${joueur.compteDesPoints()} < ${dealer.compteDesPoints}: Tu as perdu ta mise`)
+                    alert(`${joueur.compteDesPoints()} < ${dealer.compteDesPoints()}: Tu as perdu ta mise`)
                 }
             }
         }
 
         const decision = prompt("Rejouer ? (y/n)");
-        if (decision == "n") {
+        if (decision == "n" || decision == null) {
             break;
         }
     }

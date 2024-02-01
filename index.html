@@ -10,12 +10,40 @@
 </head>
 
 <body>
-    <h1>BlackJack</h1>
-
-    <h2>Cartes du Joueur</h2>
-    <div id="cartesJoueur" class="cartes"></div>
-    <h2>Cartes du Dealer</h2>
-    <div id="cartesDealer" class="cartes"></div>
+    <h1 class="title">BLACK JACK</h1>
+    <div class="main">
+        <h2><span id="command">Let's Play</span></h2>
+        <div class="row1">
+            <div id="your-box">
+                <h2>You: <span id="yourscore">0</span></h2>
+            </div>
+            <div id="dealer-box">
+                <h2>Dealer: <span id="dealerscore">0</span></h2>
+            </div>
+        </div>
+        <div class="row2">
+            <div class="buttons">
+                <button class="btn-lg btn-primary" id="hit" onmouseover="tink.play()" > Hit </button> 
+                <button class="btn-lg btn-warning" id="stand" onmouseover="tink.play()">Stand</button>
+                <button class="btn-lg btn-danger" id="deal" onmouseover="tink.play()">Deal</button>
+            </div>
+        </div>
+        <div class="row3">
+            <h3>Scoreboard: </h3>
+            <table>
+                <tr>
+                    <th>Wins</th>
+                    <th>Losses</th>
+                    <th>Draws</th>
+                </tr>
+                <tr>
+                    <td><span id="wins">0</span></td>
+                    <td><span id="losses">0</span></td>
+                    <td><span id="draws">0</span></td>
+                </tr>
+            </table>
+        </div>
+    </div>
     
     <script type="module" src="./javascript/main.js"></script>
 </body>

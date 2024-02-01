@@ -1,6 +1,8 @@
 const dom = {
     cartesJoueur: document.getElementById('cartesJoueur'),
     cartesDealer: document.getElementById('cartesDealer'),
+    pointsJoueur: document.getElementById('pointsJoueur'),
+    pointsDealer: document.getElementById('pointsDealer'),
 
     appendCartesJoueur(carte) {
         const root = this.cartesJoueur;
@@ -15,6 +17,18 @@ const dom = {
         img.src = carte.src;
         root.appendChild(img)
     },
+
+    appendPointsJoueur(point) {
+        const root = this.pointsJoueur;
+        root.textContent = point; 
+    },
+
+    appendPointsDealer(point) {
+        const root = this.pointsDealer;
+        root.textContent = point
+    },
+
+
 
     reset() {
         this.cartesJoueur.innerHTML = "";

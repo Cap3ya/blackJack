@@ -4,6 +4,9 @@ const dom = {
     pointsJoueur: document.getElementById('pointsJoueur'),
     pointsDealer: document.getElementById('pointsDealer'),
 
+    informations: document.getElementById('informations'),
+    buttons: document.getElementById('buttons'),
+
     appendCartesJoueur(carte) {
         const root = this.cartesJoueur;
         const img = document.createElement('img');
@@ -20,7 +23,7 @@ const dom = {
 
     appendPointsJoueur(point) {
         const root = this.pointsJoueur;
-        root.textContent = point; 
+        root.textContent = point;
     },
 
     appendPointsDealer(point) {
@@ -28,11 +31,18 @@ const dom = {
         root.textContent = point
     },
 
-
+    bouttonsOnClick(func) {
+        this.buttons.addEventListener('click', (event) => {
+            if(event.target.tagName === "BUTTON")
+                func(event.target.textContent);
+        })
+    },
 
     reset() {
         this.cartesJoueur.innerHTML = "";
         this.cartesDealer.innerHTML = "";
+        this.pointsJoueur.textContent = 0; 
+        this.pointsDealer.textContent = 0; 
     }
 }
 

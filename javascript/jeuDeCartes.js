@@ -1,37 +1,36 @@
 function nouveauJeuDeCartes() {
+  const enseignes = ["coeur", "carreaux", "trefle", "pique"];
+  const valeurs_points = [
+    ["as", [11, 1]], // vaut 11 points si possible (total < 21) sinon 1 point
+    ["deux", 2],
+    ["trois", 3],
+    ["quatre", 4],
+    ["cinq", 5],
+    ["six", 6],
+    ["sept", 7],
+    ["huit", 8],
+    ["neuf", 9],
+    ["dix", 10],
+    ["valet", 10],
+    ["dame", 10],
+    ["roi", 10],
+  ];
 
-    const enseignes = ['coeur', 'carreaux', 'trefle', 'pique'];
-    const valeurs_points = [
-        ["as", [11, 1]], // vaut 11 points si possible (total < 21) sinon 1 point 
-        ["deux", 2],
-        ["trois", 3],
-        ["quatre", 4],
-        ["cinq", 5],
-        ["six", 6],
-        ["sept", 7],
-        ["huit", 8],
-        ["neuf", 9],
-        ["dix", 10],
-        ["valet", 10],
-        ["dame", 10],
-        ["roi", 10],
-    ]
+  const jeuDeCartes = [];
 
-    const jeuDeCartes = [];
-
-    for (const enseigne of enseignes) {
-        for (const [valeur, point] of valeurs_points) {
-            const carte = {
-                enseigne: enseigne,
-                valeur: valeur,
-                point: point,
-                src: `/images/cartes/${enseigne}-${valeur}.svg`
-            };
-            jeuDeCartes.push(carte);
-        }
+  for (const enseigne of enseignes) {
+    for (const [valeur, point] of valeurs_points) {
+      const carte = {
+        enseigne: enseigne,
+        valeur: valeur,
+        point: point,
+        src: `./images/cartes/${enseigne}-${valeur}.svg`,
+      };
+      jeuDeCartes.push(carte);
     }
+  }
 
-    return jeuDeCartes
+  return jeuDeCartes;
 }
 
 export default nouveauJeuDeCartes;

@@ -27,12 +27,14 @@ class Joueur {
 
         this.points += carte.point;
         this.cartes.push(carte);
-        
-        if (this.name === "joueur") [
-            dom.appendCartesJoueur(carte)
-        ]
+
+        if (this.name === "joueur") {
+            dom.appendCartesJoueur(carte);
+            dom.appendpointsJoueur(this.points);
+        }
         else if (this.name === "dealer") {
-            dom.appendCartesDealer(carte)
+            dom.appendCartesDealer(carte);
+            dom.appendpointsDealer(this.points);
         }
     }
 

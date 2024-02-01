@@ -31,32 +31,6 @@ function main() {
       }
     }
   });
-
-  // while (true) {
-  //   if (joueur.points > 21) {
-  //     break; // PERDU
-  //   }
-
-  //   if (dealer.points < 17) {
-  //     dealer.prendUneCarte(jeuDeCartes);
-  //   }
-
-  //   if (joueur.points > 21) {
-  //     alert(`${joueur.points} > 21: Tu as perdu ta mise`);
-  //   } else if (joueur.points == 21) {
-  //     alert(`${joueur.points} = 21: Tu as gagné 1.5x ta mise`);
-  //   } else {
-  //     if (dealer.points > 21) {
-  //       alert(`Tu as gagné 1x ta mise`);
-  //     } else {
-  //       if (joueur.points > dealer.points) {
-  //         alert(`${joueur.points} > ${dealer.points}: Tu as gagné 1x ta mise`);
-  //       } else {
-  //         alert(`${joueur.points} < ${dealer.points}: Tu as perdu ta mise`);
-  //       }
-  //     }
-  //   }
-  // }
 }
 
 main();

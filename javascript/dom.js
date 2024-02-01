@@ -3,6 +3,9 @@ const dom = {
   cartesDealer: document.getElementById("cartesDealer"),
   pointsJoueur: document.getElementById("playerscore"),
   pointsDealer: document.getElementById("dealerscore"),
+  buttonHit: document.getElementById("hit"),
+  buttonStand: document.getElementById("stand"),
+  buttonDeal: document.getElementById("deal"),
 
   appendCartesJoueur(carte) {
     const root = this.cartesJoueur;
@@ -31,6 +34,8 @@ const dom = {
   reset() {
     this.cartesJoueur.innerHTML = "";
     this.cartesDealer.innerHTML = "";
+    this.pointsDealer.innerHTML = "";
+    this.pointsJoueur.innerHTML = "";
   },
 };
 

@@ -6,10 +6,7 @@ let jeuDeCartes = nouveauJeuDeCartes();
 const joueur = new Joueur("joueur");
 const dealer = new Joueur("dealer");
 
-// faire func double
-//faire func stand
-// Dealer after hit or stand
-// Outcomes 
+// Listener
 
 dom.buttonsOnClick(target => {
 
@@ -107,9 +104,9 @@ function dealerPrendCartes() {
     dom.standBtn.hidden = true;
     dom.hitBtn.hidden = true;
 
-    while (dealer.points < 17) {
+    do {
         dealer.prendUneCarte(jeuDeCartes);
-    }
+    } while (Math.random() > dealer.points / 21)
 
     outcomes();
 }

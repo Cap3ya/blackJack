@@ -41,14 +41,13 @@ function nouvelleCarte() {
 }
 
 function updateCagnote(cagnotte, mise) {
-    
-   if ( mise > cagnotte){
-    console.log("You can't bet more than u have");
-   }else{
-    let temp;
-    temp = cagnotte - mise;
-    displayCagnotte.innerText = temp
-}}
+    if (mise > cagnotte) {
+        dom.informations.textContent = "You can't bet more than you have!";
+    } else {
+        let temp = cagnotte - mise;
+        displayCagnotte.innerText = temp;
+    }
+}
 
 function profitCalculator(mise, multiplicator) {
         let temps = mise * multiplicator;
@@ -131,8 +130,7 @@ outcome.innerText = "outcome";
 let restartBtn = document.createElement("button")
 restartBtn.innerHTML ="Restart"
 
-// Assume dealTwoCard is defined somewhere in your code
-// dealTwoCard.style.display = "none";
+
 
 startBtn.addEventListener("click", () => {
     startBtn.style.display = "none"
@@ -148,13 +146,18 @@ startBtn.addEventListener("click", () => {
 let mBtn = [m1, m5, m25, m100, m500, m2500];
 
 mBtn.forEach(btn => btn.addEventListener('click', function (event) {
-    mBtn.forEach(btn => btn.style.display = "none");
     mise = parseInt(event.target.textContent.split("$")[1]);
-    divCagnotte.appendChild(newCard);
-    divCagnotte.appendChild(outcome);
-    divCagnotte.appendChild(restartBtn);
-    updateCagnote(cagnotte, mise);
-    dealTwoCards()
+
+    if (mise > cagnotte) {
+        dom.informations.textContent = "You can't bet more than you have!";
+    } else {
+        mBtn.forEach(btn => btn.style.display = "none");
+        divCagnotte.appendChild(newCard);
+        divCagnotte.appendChild(outcome);
+        divCagnotte.appendChild(restartBtn);
+        updateCagnote(cagnotte, mise);
+        dealTwoCards();
+    }
 }));
 
 newCard.addEventListener("click", () => {

@@ -2,7 +2,6 @@ import dom from "./dom.js";
 import Joueur from "./joueur.js";
 import nouveauJeuDeCartes from "./jeuDeCartes.js";
 
-
 let jeuDeCartes = nouveauJeuDeCartes();
 const joueur = new Joueur("joueur");
 const dealer = new Joueur("dealer");
@@ -19,8 +18,6 @@ let startBtn = document.createElement("button");
 startBtn.innerText = "Start";
 divCagnotte.appendChild(startBtn);
 
-
-
 function start() {
     jeuDeCartes = nouveauJeuDeCartes();
     joueur.reset();
@@ -33,10 +30,7 @@ function dealTwoCards() {
     joueur.prendUneCarte(jeuDeCartes);
     joueur.prendUneCarte(jeuDeCartes);
 
-    while (dealer.points <= 17 && dealer.cartes.length < 3) {
-        dealer.prendUneCarte(jeuDeCartes);
-    }
-    dom.informations.textContent = "Deal two cards"
+    dealer.prendUneCarte(jeuDeCartes);
 }
 
 function nouvelleCarte() {
@@ -96,30 +90,38 @@ function outcomes() {
     dom.informations.textContent = outcome;
 }
 
-
-
-
-
 let m1 = document.createElement("button");
-m1.innerText = "1 $";
+m1.innerText = "$1";
+m1.className = 'mBtn';
 
 let m5 = document.createElement("button");
-m5.innerText = "5 $";
+m5.innerText = "$5";
+m5.className = 'mBtn';
 
 let m25 = document.createElement("button");
-m25.innerText = "25 $";
+m25.innerText = "$25";
+m25.className = 'mBtn';
 
 let m100 = document.createElement("button");
-m100.innerText = "100 $";
+m100.innerText = "$100";
+m100.className = 'mBtn';
 
 let m500 = document.createElement("button");
-m500.innerText = "500 $";
+m500.innerText = "$500";
+m500.className = 'mBtn';
 
 let m2500 = document.createElement("button");
-m2500.innerText = "2500 $";
+m2500.innerText = "$2500";
+m2500.className = 'mBtn';
 
 let newCard = document.createElement("button")
 newCard.innerText = "hit"
+
+let stand = document.createElement("button")
+stand.innerText = "stand";
+
+let double = document.createElement("double")
+double.innerText = "stand";
 
 let outcome = document.createElement("button")
 outcome.innerText = "outcome";
@@ -139,94 +141,20 @@ startBtn.addEventListener("click", () => {
     divCagnotte.appendChild(m500);
     divCagnotte.appendChild(m2500);
     start();
+
 });
-m1.addEventListener("click", () => {
-    m1.style.display = "none"
-    m5.style.display = "none"
-    m25.style.display = "none"
-    m100.style.display = "none"
-    m500.style.display = "none"
-    m2500.style.display = "none"
-    mise = 1;
+
+let mBtn = [m1, m5, m25, m100, m500, m2500];
+
+mBtn.forEach(btn => btn.addEventListener('click', function (event) {
+    mBtn.forEach(btn => btn.style.display = "none");
+    mise = parseInt(event.target.textContent.split("$")[1]);
     divCagnotte.appendChild(newCard);
-    divCagnotte.appendChild(outcome)
-    divCagnotte.appendChild(restartBtn)
+    divCagnotte.appendChild(outcome);
+    divCagnotte.appendChild(restartBtn);
     updateCagnote(cagnotte, mise);
     dealTwoCards()
-});
-m5.addEventListener("click", () => {
-    m1.style.display = "none"
-    m5.style.display = "none"
-    m25.style.display = "none"
-    m100.style.display = "none"
-    m500.style.display = "none"
-    m2500.style.display = "none"
-    mise = 5;
-    updateCagnote(cagnotte, mise)
-    
-    divCagnotte.appendChild(newCard);
-    divCagnotte.appendChild(outcome);
-    divCagnotte.appendChild(restartBtn);
-    dealTwoCards();
-});
-m25.addEventListener("click", () => {
-    m1.style.display = "none"
-    m5.style.display = "none"
-    m25.style.display = "none"
-    m100.style.display = "none"
-    m500.style.display = "none"
-    m2500.style.display = "none"
-    mise = 25;
-    updateCagnote(cagnotte, mise)
-    
-    divCagnotte.appendChild(newCard);
-    divCagnotte.appendChild(outcome);
-    divCagnotte.appendChild(restartBtn);
-    dealTwoCards()
-});
-m100.addEventListener("click", () => {
-    m1.style.display = "none"
-    m5.style.display = "none"
-    m25.style.display = "none"
-    m100.style.display = "none"
-    m500.style.display = "none"
-    m2500.style.display = "none"
-    mise = 100;
-    updateCagnote(cagnotte, 100);
-    
-    divCagnotte.appendChild(newCard);
-    divCagnotte.appendChild(outcome)
-    divCagnotte.appendChild(restartBtn)
-    dealTwoCards()
-});
-m500.addEventListener("click", () => {
-    m1.style.display = "none"
-    m5.style.display = "none"
-    m25.style.display = "none"
-    m100.style.display = "none"
-    m500.style.display = "none"
-    m2500.style.display = "none"
-    mise = 500;
-    updateCagnote(cagnotte, mise)
-    divCagnotte.appendChild(newCard);
-    divCagnotte.appendChild(outcome)
-    divCagnotte.appendChild(restartBtn)
-    dealTwoCards()
-});
-m2500.addEventListener("click", () => {
-    m1.style.display = "none"
-    m5.style.display = "none"
-    m25.style.display = "none"
-    m100.style.display = "none"
-    m500.style.display = "none"
-    m2500.style.display = "none"
-    mise = 2500;
-    updateCagnote(cagnotte, mise)
-    divCagnotte.appendChild(newCard);
-    divCagnotte.appendChild(outcome)
-    divCagnotte.appendChild(restartBtn)
-    dealTwoCards()
-});
+}));
 
 newCard.addEventListener("click", () => {
     nouvelleCarte();
@@ -238,5 +166,7 @@ outcome.addEventListener("click", () => {
 });
 
 restartBtn.addEventListener("click", () => {
-    location.reload();
+    joueur.reset()
+    dealer.reset()
+    dom.reset()
 })

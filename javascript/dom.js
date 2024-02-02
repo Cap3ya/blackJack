@@ -30,9 +30,6 @@ const dom = {
         root.textContent = point
     },
 
-   
- 
-
     reset() {
         this.cartesJoueur.innerHTML = "";
         this.cartesDealer.innerHTML = "";

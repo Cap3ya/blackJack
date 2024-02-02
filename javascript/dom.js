@@ -3,7 +3,6 @@ const dom = {
     cartesDealer: document.getElementById('cartesDealer'),
     pointsJoueur: document.getElementById('pointsJoueur'),
     pointsDealer: document.getElementById('pointsDealer'),
-
     informations: document.getElementById('informations'),
     buttons: document.getElementById('buttons'),
 
@@ -31,12 +30,8 @@ const dom = {
         root.textContent = point
     },
 
-    bouttonsOnClick(func) {
-        this.buttons.addEventListener('click', (event) => {
-            if(event.target.tagName === "BUTTON")
-                func(event.target.textContent);
-        })
-    },
+   
+ 
 
     reset() {
         this.cartesJoueur.innerHTML = "";

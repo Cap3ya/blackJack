@@ -23,25 +23,17 @@ function start() {
     joueur.reset();
     dealer.reset();
     dom.reset();
-    
+    dom.informations.textContent = "Start"
 }
 
 function dealTwoCards() {
     joueur.prendUneCarte(jeuDeCartes);
     joueur.prendUneCarte(jeuDeCartes);
 
-<<<<<<< HEAD
     dealer.prendUneCarte(jeuDeCartes);
-=======
-    while (dealer.points <= 17 && dealer.cartes.length < 3) {
-        dealer.prendUneCarte(jeuDeCartes);
-    }
-    
->>>>>>> fd42adb5a2411d8b86dfe4d0ef0f639c8ef01676
 }
 
 function nouvelleCarte() {
-    if (joueur)
     joueur.prendUneCarte(jeuDeCartes)
     dom.informations.textContent = "Nouvelle Carte"
 }
@@ -149,114 +141,19 @@ startBtn.addEventListener("click", () => {
     divCagnotte.appendChild(m500);
     divCagnotte.appendChild(m2500);
     start();
-
 });
-<<<<<<< HEAD
 
 let mBtn = [m1, m5, m25, m100, m500, m2500];
 
 mBtn.forEach(btn => btn.addEventListener('click', function (event) {
     mBtn.forEach(btn => btn.style.display = "none");
     mise = parseInt(event.target.textContent.split("$")[1]);
-=======
-m1.addEventListener("click", () => {
-    m1.style.display = "none"
-    m5.style.display = "none"
-    m25.style.display = "none"
-    m100.style.display = "none"
-    m500.style.display = "none"
-    m2500.style.display = "none"
-    mise = 1;
-    dom.informations.textContent = "mise :" + mise;
->>>>>>> fd42adb5a2411d8b86dfe4d0ef0f639c8ef01676
     divCagnotte.appendChild(newCard);
     divCagnotte.appendChild(outcome);
     divCagnotte.appendChild(restartBtn);
     updateCagnote(cagnotte, mise);
     dealTwoCards()
-<<<<<<< HEAD
 }));
-=======
-});
-m5.addEventListener("click", () => {
-    m1.style.display = "none"
-    m5.style.display = "none"
-    m25.style.display = "none"
-    m100.style.display = "none"
-    m500.style.display = "none"
-    m2500.style.display = "none"
-    mise = 5;
-    dom.informations.textContent = "mise :" + mise;
-    updateCagnote(cagnotte, mise)
-    
-    divCagnotte.appendChild(newCard);
-    divCagnotte.appendChild(outcome);
-    divCagnotte.appendChild(restartBtn);
-    dealTwoCards();
-});
-m25.addEventListener("click", () => {
-    m1.style.display = "none"
-    m5.style.display = "none"
-    m25.style.display = "none"
-    m100.style.display = "none"
-    m500.style.display = "none"
-    m2500.style.display = "none"
-    mise = 25;
-    dom.informations.textContent = "mise :" + mise + "$";
-    updateCagnote(cagnotte, mise)
-    
-    divCagnotte.appendChild(newCard);
-    divCagnotte.appendChild(outcome);
-    divCagnotte.appendChild(restartBtn);
-    dealTwoCards()
-});
-m100.addEventListener("click", () => {
-    m1.style.display = "none"
-    m5.style.display = "none"
-    m25.style.display = "none"
-    m100.style.display = "none"
-    m500.style.display = "none"
-    m2500.style.display = "none"
-    mise = 100;
-    dom.informations.textContent = "mise :" + mise + "$";
-    updateCagnote(cagnotte, 100);
-    
-    divCagnotte.appendChild(newCard);
-    divCagnotte.appendChild(outcome)
-    divCagnotte.appendChild(restartBtn)
-    dealTwoCards()
-});
-m500.addEventListener("click", () => {
-    m1.style.display = "none"
-    m5.style.display = "none"
-    m25.style.display = "none"
-    m100.style.display = "none"
-    m500.style.display = "none"
-    m2500.style.display = "none"
-    mise = 500;
-    dom.informations.textContent = "mise :" + mise + "$";
-    updateCagnote(cagnotte, mise)
-    divCagnotte.appendChild(newCard);
-    divCagnotte.appendChild(outcome)
-    divCagnotte.appendChild(restartBtn)
-    dealTwoCards()
-});
-m2500.addEventListener("click", () => {
-    m1.style.display = "none"
-    m5.style.display = "none"
-    m25.style.display = "none"
-    m100.style.display = "none"
-    m500.style.display = "none"
-    m2500.style.display = "none"
-    mise = 2500;1
-    dom.informations.textContent = "mise :" + mise + "$";
-    updateCagnote(cagnotte, mise)
-    divCagnotte.appendChild(newCard);
-    divCagnotte.appendChild(outcome)
-    divCagnotte.appendChild(restartBtn)
-    dealTwoCards()
-});
->>>>>>> fd42adb5a2411d8b86dfe4d0ef0f639c8ef01676
 
 newCard.addEventListener("click", () => {
     nouvelleCarte();

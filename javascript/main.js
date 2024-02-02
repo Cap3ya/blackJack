@@ -64,7 +64,7 @@ function start() {
 function joueurMise(mise) {
 
     if (mise > joueur.cagnotte) {
-        dom.informations.textContent = "You can't bet more than you have!";
+        dom.informations.textContent = "Pas de bras, pas de Chocolat!";
     } else {
         joueur.setMise(mise);
         dom.miseBtns.forEach(btn => btn.hidden = true);
@@ -75,8 +75,9 @@ function joueurMise(mise) {
         joueur.prendUneCarte(jeuDeCartes);
         joueur.prendUneCarte(jeuDeCartes);
         dealer.prendUneCarte(jeuDeCartes);
+
+        dom.informations.textContent = "This is the question.."
     }
-    dom.informations.textContent = "This is the question.."
 }
 
 function hit() {

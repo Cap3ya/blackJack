@@ -8,7 +8,7 @@ function main() {
   const joueur = new Joueur("joueur");
 
   // Remet cartes et points à zéro
-  dom.buttonDeal.addEventListener("click", (event) => {
+  dom.buttonRestart.addEventListener("click", (event) => {
     joueur.reset();
     dealer.reset();
     dom.reset();

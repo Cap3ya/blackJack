@@ -5,7 +5,7 @@ const dom = {
   pointsDealer: document.getElementById("dealerscore"),
   buttonHit: document.getElementById("hit"),
   buttonStand: document.getElementById("stand"),
-  buttonDeal: document.getElementById("deal"),
+  buttonRestart: document.getElementById("restart"),
 
   appendCartesJoueur(carte) {
     const root = this.cartesJoueur;

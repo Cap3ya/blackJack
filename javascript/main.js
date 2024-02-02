@@ -58,6 +58,7 @@ function start() {
     dom.startBtn.hidden = true;
     dom.restartBtn.hidden = true;
     dom.miseBtns.forEach(btn => btn.hidden = false);
+    dom.informations.textContent = "Allez, mise!"
 }
 
 function joueurMise(mise) {
@@ -75,7 +76,7 @@ function joueurMise(mise) {
         joueur.prendUneCarte(jeuDeCartes);
         dealer.prendUneCarte(jeuDeCartes);
     }
-
+    dom.informations.textContent = "This is the question.."
 }
 
 function hit() {

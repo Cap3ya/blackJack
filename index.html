@@ -9,39 +9,52 @@
     <link rel="stylesheet" href="./css/styles.css">
 </head>
 
-<body>
-    <h1>BlackJack</h1>
-    <p>Par la blue team Dwwm 2023</p>
+<body class="flex column">
 
-    <div class="container flex">
-        <div>
-            <h2>Joueur</h2>
-            <div id="cartesJoueur" class="cartes flex"></div>
-            <p>Points: <span id="pointsJoueur" class="points">0</span></p>
-            <p>Cagnotte: <span id="cagnotteJoueur">10,000</span></p>
-            <p>Mise: <span id="miseJoueur">0</span></p>
-        </div>
-        <div>
-            <h2>Dealer</h2>
+    <header class="flex">
+        <h1>BlackJack</h1>
+    </header>
+
+    <main class="flex column">
+
+        <div class="joueur flex column">
+            <div class="flex">
+                <h2>Dealer</h2>
+                <p><span id="pointsDealer" class="points">0</span> pts</p>
+            </div>
             <div id="cartesDealer" class="cartes flex"></div>
-            <p>Points: <span id="pointsDealer" class="points">0</span></p>
         </div>
-    </div>
 
-    <p id="informations"></p>
+        <div class="joueur flex column">
+            <div class="flex">
+                <h2>Joueur</h2>
+                <p><span id="pointsJoueur" class="points">0</span> pts</p>
+            </div>
+            <div class="flex">
+                <p>Cagnotte: $<span id="cagnotteJoueur">10,000</span></p>
+                <p>Mise: $<span id="miseJoueur">0</span></p>
+            </div>
+            <div id="cartesJoueur" class="cartes flex"></div>
+        </div>
 
-    <div id="buttons">
-        <button id="startBtn">Start</button>
-        <button id="hitBtn" hidden>Hit</button>
-        <button id="standBtn" hidden>Stand</button>
-        <button id="doubleBtn" hidden>Double</button>
-        <button id="restartBtn" hidden>Restart</button>
+        <p id="informations">C'est partie!</p>
+        <div id="buttons" class="flex">
+            <button id="startBtn">Start</button>
+            <button id="hitBtn" hidden>Hit</button>
+            <button id="standBtn" hidden>Stand</button>
+            <button id="doubleBtn" hidden>Double</button>
+            <button id="restartBtn" hidden>Restart</button>
+            <button id="miseBtn" class="mBtn" hidden>$20</button>
+            <button id="miseBtn" class="mBtn" hidden>$100</button>
+            <button id="miseBtn" class="mBtn" hidden>$500</button>
+            <button id="miseBtn" class="mBtn" hidden>$2500</button>
+        </div>
 
-        <button id="miseBtn" class="mBtn" hidden>$20</button>
-        <button id="miseBtn" class="mBtn" hidden>$100</button>
-        <button id="miseBtn" class="mBtn" hidden>$500</button>
-        <button id="miseBtn" class="mBtn" hidden>$2500</button>
-    </div>
+    </main>
+
+    <footer class="flex">
+        <p>Par la blue team <br> Dwwm 2023</p>
+    </footer>
 
     <script type="module" src="./javascript/main.js"></script>
 </body>

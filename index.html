@@ -11,15 +11,30 @@
 
 <body>
     <h1>BlackJack</h1>
+    <p>Par la blue team Dwwm 2023</p>
 
-    <h2>Cartes du Joueur</h2>
-    <div id="cartesJoueur" class="cartes"></div>
-    <h3>Points du joueur</h3>
-    <div id="pointsJoueur"></div>
-    <h2>Cartes du Dealer</h2>
-    <div id="cartesDealer" class="cartes"></div>
-    <h3>Points du Dealer</h3>
-    <div id="pointsDealer"></div>
+    <div class="container flex">
+        <div>
+            <h2>Joueur</h2>
+            <h3>Cartes du Joueur</h3>
+            <div id="cartesJoueur" class="cartes flex"></div>
+            <h3>Points du Joueur</h3>
+            <div id="pointsJoueur" class="points">0</div>
+            <div id="cagnotteJoueur"></div>
+        </div>
+        <div>
+            <h2>Dealer</h2>
+            <h3>Cartes du Dealer</h3>
+            <div id="cartesDealer" class="cartes flex"></div>
+            <h3>Points du Dealer</h3>
+            <div id="pointsDealer" class="points">0</div>
+        </div>
+    </div>
+
+    <p id="informations"></p>
+
+    <div id="buttons">
+    </div>
 
     <script type="module" src="./javascript/main.js"></script>
 </body>

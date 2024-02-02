@@ -26,6 +26,33 @@ function start() {
     dom.informations.textContent = "Start"
 }
 
+<<<<<<< HEAD
+=======
+function restart(){
+    let temp = cagnotte;
+    start();
+    dealTwoCards()
+    mBtn.forEach(btn => btn.style.display = "inline");
+    newCard.style.display = "none";
+    outcome.style.display = "none";
+    restartBtn.style.display = "none";
+    mBtn.forEach(btn => {
+        btn.addEventListener('click', function (event) {
+            mise = parseInt(event.target.textContent.split("$")[1]);
+
+            
+            mBtn.forEach(btn => btn.style.display = "none");
+            newCard.style.display = "inline";
+            outcome.style.display = "inline";
+            restartBtn.style.display = "inline";
+
+            updateCagnote(cagnotte, mise);
+        });
+    });
+
+    cagnotte = temp;
+}
+>>>>>>> main
 
 
 function dealTwoCards() {
@@ -41,6 +68,7 @@ function nouvelleCarte() {
 }
 
 function updateCagnote(cagnotte, mise) {
+<<<<<<< HEAD
 
     if (mise > cagnotte) {
         console.log("You can't bet more than u have");
@@ -48,13 +76,26 @@ function updateCagnote(cagnotte, mise) {
         let temp;
         temp = cagnotte - mise;
         displayCagnotte.innerText = temp
+=======
+    if (mise > cagnotte) {
+        dom.informations.textContent = "You can't bet more than you have!";
+    } else {
+        let temp = cagnotte - mise;
+        displayCagnotte.innerText = temp;
+>>>>>>> main
     }
 }
 
 function profitCalculator(mise, multiplicator) {
+<<<<<<< HEAD
     let temps = mise * multiplicator;
     let total = cagnotte += temps;
     displayCagnotte.innerText = total;
+=======
+        let temps = mise * multiplicator;
+        let total =  cagnotte += temps;
+        displayCagnotte.innerText = total;
+>>>>>>> main
 }
 
 function outcomes() {
@@ -64,29 +105,50 @@ function outcomes() {
     if (joueur.points > 21) {
         outcome = 'You Lose'
         multiplicator = 0;
+<<<<<<< HEAD
         profitCalculator(mise, multiplicator);
+=======
+        profitCalculator(mise, multiplicator)
+        restart();
+>>>>>>> main
     }
     else if (joueur.points == 21) {
         outcome = `Tu as gagné 1.5x ta mise`;
         multiplicator = 1.5;
         profitCalculator(mise, multiplicator);
+<<<<<<< HEAD
+=======
+        restart()
+>>>>>>> main
     }
     else {
         if (dealer.points > 21) {
             outcome = `Tu as gagné 1x ta mise`;
             multiplicator = 2
             profitCalculator(mise, multiplicator);
+<<<<<<< HEAD
+=======
+            restart();
+>>>>>>> main
         }
         else {
             if (joueur.points > dealer.points) {
                 outcome = `Tu as gagné 1x ta mise`;
                 multiplicator = 2;
                 profitCalculator(mise, multiplicator);
+<<<<<<< HEAD
+=======
+                restart();
+>>>>>>> main
             }
             else {
                 outcome = `Tu as perdu ta mise`;
                 multiplicator = 0;
                 profitCalculator(mise, multiplicator);
+<<<<<<< HEAD
+=======
+                restart();
+>>>>>>> main
             }
         }
     }
@@ -123,17 +185,28 @@ newCard.innerText = "hit"
 let stand = document.createElement("button")
 stand.innerText = "stand";
 
+<<<<<<< HEAD
 let double = document.createElement("button")
 double.innerText = "double";
+=======
+let double = document.createElement("double")
+double.innerText = "stand";
+>>>>>>> main
 
 let outcome = document.createElement("button")
 outcome.innerText = "outcome";
 
 let restartBtn = document.createElement("button")
+<<<<<<< HEAD
 restartBtn.innerHTML = "Restart"
 
 // Assume dealTwoCard is defined somewhere in your code
 // dealTwoCard.style.display = "none";
+=======
+restartBtn.innerHTML ="Restart"
+
+
+>>>>>>> main
 
 startBtn.addEventListener("click", () => {
     startBtn.style.display = "none"
@@ -149,6 +222,7 @@ startBtn.addEventListener("click", () => {
 let mBtn = [m1, m5, m25, m100, m500, m2500];
 
 mBtn.forEach(btn => btn.addEventListener('click', function (event) {
+<<<<<<< HEAD
     mBtn.forEach(btn => btn.style.display = "none");
     mise = parseInt(event.target.textContent.split("$")[1]);
     divCagnotte.appendChild(newCard);
@@ -165,6 +239,21 @@ double.addEventListener("click", () => {
     nouvelleCarte();
     displayCagnotte.innerText = cagnotte
 });
+=======
+    mise = parseInt(event.target.textContent.split("$")[1]);
+
+    if (mise > cagnotte) {
+        dom.informations.textContent = "You can't bet more than you have!";
+    } else {
+        mBtn.forEach(btn => btn.style.display = "none");
+        divCagnotte.appendChild(newCard);
+        divCagnotte.appendChild(outcome);
+        divCagnotte.appendChild(restartBtn);
+        updateCagnote(cagnotte, mise);
+        dealTwoCards();
+    }
+}));
+>>>>>>> main
 
 newCard.addEventListener("click", () => {
     nouvelleCarte();
@@ -176,8 +265,12 @@ outcome.addEventListener("click", () => {
 });
 
 restartBtn.addEventListener("click", () => {
+<<<<<<< HEAD
     let temp = cagnotte;
     start();
     dealTwoCards()
     cagnotte = temp
+=======
+    restart();
+>>>>>>> main
 })

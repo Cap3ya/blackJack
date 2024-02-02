@@ -31,7 +31,11 @@ class Joueur {
         if (this.name === "joueur") {
             dom.appendCartesJoueur(carte)
             dom.appendPointsJoueur(this.points)
+<<<<<<< HEAD
 
+=======
+            
+>>>>>>> main
         }
         else if (this.name === "dealer") {
             dom.appendCartesDealer(carte)

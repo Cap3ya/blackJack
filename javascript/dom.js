@@ -1,10 +1,22 @@
 const dom = {
+    cagnotteJoueur: document.getElementById('cagnotteJoueur'),
+    miseJoueur: document.getElementById('miseJoueur'),
+
     cartesJoueur: document.getElementById('cartesJoueur'),
-    cartesDealer: document.getElementById('cartesDealer'),
     pointsJoueur: document.getElementById('pointsJoueur'),
+
+    cartesDealer: document.getElementById('cartesDealer'),
     pointsDealer: document.getElementById('pointsDealer'),
+
     informations: document.getElementById('informations'),
+
     buttons: document.getElementById('buttons'),
+    startBtn: document.getElementById('startBtn'),
+    hitBtn: document.getElementById('hitBtn'),
+    standBtn: document.getElementById('standBtn'),
+    doubleBtn: document.getElementById('doubleBtn'),
+    restartBtn: document.getElementById('restartBtn'),
+    miseBtns: document.querySelectorAll(".mBtn"),
 
     appendCartesJoueur(carte) {
         const root = this.cartesJoueur;
@@ -30,12 +42,19 @@ const dom = {
         root.textContent = point
     },
 
+    buttonsOnClick(callback) {
+        this.buttons.addEventListener('click', (event) => {
+            callback(event.target);
+        })
+    },
+
     reset() {
         this.cartesJoueur.innerHTML = "";
         this.cartesDealer.innerHTML = "";
-        this.pointsJoueur.textContent = 0; 
-        this.pointsDealer.textContent = 0; 
-    }
+        this.pointsJoueur.textContent = 0;
+        this.pointsDealer.textContent = 0;
+        this.miseJoueur.textContent = 0
+    },
 }
 
 export default dom; 

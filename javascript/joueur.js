@@ -5,7 +5,7 @@ class Joueur {
         this.name = name
         this.cartes = [];
         this.points = 0;
-        this.cagnotte = 1000;
+        this.cagnotte = 10000;
     }
 
     prendUneCarte(jeuDeCartes) {
@@ -27,11 +27,11 @@ class Joueur {
 
         this.points += carte.point;
         this.cartes.push(carte);
-        
+
         if (this.name === "joueur") {
             dom.appendCartesJoueur(carte)
             dom.appendPointsJoueur(this.points)
-            
+
         }
         else if (this.name === "dealer") {
             dom.appendCartesDealer(carte)
@@ -39,9 +39,21 @@ class Joueur {
         }
     }
 
+    setCagnotte(profitLoss) {
+        this.cagnotte += profitLoss;
+        dom.cagnotteJoueur.textContent = this.cagnotte.toLocaleString();
+    }
+
+    setMise(value) {
+        this.mise = value;
+        dom.miseJoueur.textContent = this.mise.toLocaleString()
+        this.setCagnotte(-this.mise)
+    }
+
     reset() {
         this.cartes = [];
         this.points = 0;
+        this.mise = 0;
     }
 }
 

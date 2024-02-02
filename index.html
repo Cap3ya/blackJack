@@ -16,30 +16,31 @@
     <div class="container flex">
         <div>
             <h2>Joueur</h2>
-            <h3>Cartes du Joueur</h3>
             <div id="cartesJoueur" class="cartes flex"></div>
-            <h3>Points du Joueur</h3>
-            <div id="pointsJoueur" class="points">0</div>
-            <div id="cagnotteJoueur"></div>
+            <p>Points: <span id="pointsJoueur" class="points">0</span></p>
+            <p>Cagnotte: <span id="cagnotteJoueur">10,000</span></p>
+            <p>Mise: <span id="miseJoueur">0</span></p>
         </div>
         <div>
             <h2>Dealer</h2>
-            <h3>Cartes du Dealer</h3>
             <div id="cartesDealer" class="cartes flex"></div>
-            <h3>Points du Dealer</h3>
-            <div id="pointsDealer" class="points">0</div>
+            <p>Points: <span id="pointsDealer" class="points">0</span></p>
         </div>
     </div>
 
     <p id="informations"></p>
 
     <div id="buttons">
-<<<<<<< HEAD
-       
-=======
-    
-      
->>>>>>> fd42adb5a2411d8b86dfe4d0ef0f639c8ef01676
+        <button id="startBtn">Start</button>
+        <button id="hitBtn" hidden>Hit</button>
+        <button id="standBtn" hidden>Stand</button>
+        <button id="doubleBtn" hidden>Double</button>
+        <button id="restartBtn" hidden>Restart</button>
+
+        <button id="miseBtn" class="mBtn" hidden>$20</button>
+        <button id="miseBtn" class="mBtn" hidden>$100</button>
+        <button id="miseBtn" class="mBtn" hidden>$500</button>
+        <button id="miseBtn" class="mBtn" hidden>$2500</button>
     </div>
 
     <script type="module" src="./javascript/main.js"></script>

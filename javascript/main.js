@@ -5,199 +5,155 @@ import nouveauJeuDeCartes from "./jeuDeCartes.js";
 let jeuDeCartes = nouveauJeuDeCartes();
 const joueur = new Joueur("joueur");
 const dealer = new Joueur("dealer");
-let cagnotte = 1000;
-let mise;
 
-let current = document.getElementById("buttons");
-let divCagnotte = document.createElement("div");
-current.appendChild(divCagnotte);
-let displayCagnotte = document.getElementById("cagnotteJoueur");
-displayCagnotte.innerHTML = cagnotte;
+// faire func double
+//faire func stand
+// Dealer after hit or stand
+// Outcomes 
 
-let startBtn = document.createElement("button");
-startBtn.innerText = "Start";
-divCagnotte.appendChild(startBtn);
+dom.buttonsOnClick(target => {
+
+    switch (target.textContent) {
+        case "Start":
+            start();
+            break;
+
+        case "Hit":
+            hit();
+            break;
+
+        case "Stand":
+            stand();
+            break;
+
+        case "Double":
+            double()
+            break;
+
+        case "Outcome":
+            outcomes();
+            break;
+
+        case "Restart":
+            start();
+            break;
+    }
+
+    /* miseBtns */
+    if (/^\$/.test(target.textContent)) {
+        const mise = parseInt(target.textContent.split("$")[1]);
+        joueurMise(mise)
+    }
+})
+
+// Functions 
 
 function start() {
-    jeuDeCartes = nouveauJeuDeCartes();
-    joueur.reset();
-    dealer.reset();
-    dom.reset();
-    dom.informations.textContent = "Start"
+
+    if (jeuDeCartes.length < 10) {
+        jeuDeCartes = nouveauJeuDeCartes();
+    }
+
+    joueur.reset(); //points et cartes
+    dealer.reset(); //points et cartes
+    dom.reset(); //points et cartes
+
+    dom.startBtn.hidden = true;
+    dom.restartBtn.hidden = true;
+    dom.miseBtns.forEach(btn => btn.hidden = false);
 }
 
-function restart(){
-    let temp = cagnotte;
-    start();
-    dealTwoCards()
-    mBtn.forEach(btn => btn.style.display = "inline");
-    newCard.style.display = "none";
-    outcome.style.display = "none";
-    restartBtn.style.display = "none";
-    mBtn.forEach(btn => {
-        btn.addEventListener('click', function (event) {
-            mise = parseInt(event.target.textContent.split("$")[1]);
+function joueurMise(mise) {
 
-            
-            mBtn.forEach(btn => btn.style.display = "none");
-            newCard.style.display = "inline";
-            outcome.style.display = "inline";
-            restartBtn.style.display = "inline";
-
-            updateCagnote(cagnotte, mise);
-        });
-    });
-
-    cagnotte = temp;
-}
-
-
-function dealTwoCards() {
-    joueur.prendUneCarte(jeuDeCartes);
-    joueur.prendUneCarte(jeuDeCartes);
-
-    dealer.prendUneCarte(jeuDeCartes);
-}
-
-function nouvelleCarte() {
-    joueur.prendUneCarte(jeuDeCartes)
-    dom.informations.textContent = "Nouvelle Carte"
-}
-
-function updateCagnote(cagnotte, mise) {
-    if (mise > cagnotte) {
+    if (mise > joueur.cagnotte) {
         dom.informations.textContent = "You can't bet more than you have!";
     } else {
-        let temp = cagnotte - mise;
-        displayCagnotte.innerText = temp;
+        joueur.setMise(mise);
+        dom.miseBtns.forEach(btn => btn.hidden = true);
+        dom.hitBtn.hidden = false;
+        dom.standBtn.hidden = false;
+        dom.doubleBtn.hidden = false;
+
+        joueur.prendUneCarte(jeuDeCartes);
+        joueur.prendUneCarte(jeuDeCartes);
+        dealer.prendUneCarte(jeuDeCartes);
+    }
+
+}
+
+function hit() {
+    joueur.prendUneCarte(jeuDeCartes)
+
+    if (joueur.points >= 21) {
+        dealerPrendCartes()
     }
 }
 
-function profitCalculator(mise, multiplicator) {
-        let temps = mise * multiplicator;
-        let total =  cagnotte += temps;
-        displayCagnotte.innerText = total;
+function stand() {
+    dealerPrendCartes();
+}
+
+function double() {
+    joueur.setMise(joueur.mise * 2);
+    joueur.prendUneCarte(jeuDeCartes);
+
+    if (joueur.points >= 21) {
+        dealerPrendCartes()
+    }
+}
+
+function dealerPrendCartes() {
+    dom.doubleBtn.hidden = true;
+    dom.standBtn.hidden = true;
+    dom.hitBtn.hidden = true;
+
+    while (dealer.points < 17) {
+        dealer.prendUneCarte(jeuDeCartes);
+    }
+
+    outcomes();
 }
 
 function outcomes() {
     let outcome;
-    let multiplicator
 
     if (joueur.points > 21) {
-        outcome = 'You Lose'
-        multiplicator = 0;
-        profitCalculator(mise, multiplicator)
-        restart();
+        outcome = "Tu as perdu $" + joueur.mise;
     }
     else if (joueur.points == 21) {
-        outcome = `Tu as gagné 1.5x ta mise`;
-        multiplicator = 1.5;
-        profitCalculator(mise, multiplicator);
-        restart()
+        if (dealer.points == 21) {
+            outcome = "Tu es remboursé $" + joueur.mise;
+            joueur.setCagnotte(joueur.mise);
+        }
+        outcome = "Tu as gagné $" + (joueur.mise * 3 / 2);
+        joueur.setCagnotte((1 + 1.5) * joueur.mise);
     }
     else {
         if (dealer.points > 21) {
-            outcome = `Tu as gagné 1x ta mise`;
-            multiplicator = 2
-            profitCalculator(mise, multiplicator);
-            restart();
+            outcome = "Tu as gagné $" + joueur.mise;
+            joueur.setCagnotte(2 * joueur.mise);
         }
         else {
             if (joueur.points > dealer.points) {
-                outcome = `Tu as gagné 1x ta mise`;
-                multiplicator = 2;
-                profitCalculator(mise, multiplicator);
-                restart();
+                outcome = "Tu as gagné $" + joueur.mise;
+                joueur.setCagnotte(2 * joueur.mise);
+            }
+            else if (joueur.points == dealer.points) {
+                outcome = "Tu es remboursé $" + joueur.mise;
+                joueur.setCagnotte(joueur.mise);
             }
             else {
-                outcome = `Tu as perdu ta mise`;
-                multiplicator = 0;
-                profitCalculator(mise, multiplicator);
-                restart();
+                outcome = "Tu as perdu $" + joueur.mise;
             }
         }
     }
     dom.informations.textContent = outcome;
+    restart()
 }
 
-let m1 = document.createElement("button");
-m1.innerText = "$1";
-m1.className = 'mBtn';
-
-let m5 = document.createElement("button");
-m5.innerText = "$5";
-m5.className = 'mBtn';
-
-let m25 = document.createElement("button");
-m25.innerText = "$25";
-m25.className = 'mBtn';
-
-let m100 = document.createElement("button");
-m100.innerText = "$100";
-m100.className = 'mBtn';
-
-let m500 = document.createElement("button");
-m500.innerText = "$500";
-m500.className = 'mBtn';
-
-let m2500 = document.createElement("button");
-m2500.innerText = "$2500";
-m2500.className = 'mBtn';
-
-let newCard = document.createElement("button")
-newCard.innerText = "hit"
-
-let stand = document.createElement("button")
-stand.innerText = "stand";
-
-let double = document.createElement("double")
-double.innerText = "stand";
-
-let outcome = document.createElement("button")
-outcome.innerText = "outcome";
-
-let restartBtn = document.createElement("button")
-restartBtn.innerHTML ="Restart"
-
-
-
-startBtn.addEventListener("click", () => {
-    startBtn.style.display = "none"
-    divCagnotte.appendChild(m1);
-    divCagnotte.appendChild(m5);
-    divCagnotte.appendChild(m25);
-    divCagnotte.appendChild(m100);
-    divCagnotte.appendChild(m500);
-    divCagnotte.appendChild(m2500);
-    start();
-});
-
-let mBtn = [m1, m5, m25, m100, m500, m2500];
-
-mBtn.forEach(btn => btn.addEventListener('click', function (event) {
-    mise = parseInt(event.target.textContent.split("$")[1]);
-
-    if (mise > cagnotte) {
-        dom.informations.textContent = "You can't bet more than you have!";
-    } else {
-        mBtn.forEach(btn => btn.style.display = "none");
-        divCagnotte.appendChild(newCard);
-        divCagnotte.appendChild(outcome);
-        divCagnotte.appendChild(restartBtn);
-        updateCagnote(cagnotte, mise);
-        dealTwoCards();
-    }
-}));
-
-newCard.addEventListener("click", () => {
-    nouvelleCarte();
-})
-
-outcome.addEventListener("click", () => {
-    outcomes();
-    profitCalculator(mise, multiplicator);
-});
-
-restartBtn.addEventListener("click", () => {
-    restart();
-})
+function restart() {
+    dom.hitBtn.hidden = true;
+    dom.standBtn.hidden = true;
+    dom.doubleBtn.hidden = true;
+    dom.restartBtn.hidden = false;
+}

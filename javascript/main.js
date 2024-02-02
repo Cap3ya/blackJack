@@ -26,6 +26,8 @@ function start() {
     dom.informations.textContent = "Start"
 }
 
+
+
 function dealTwoCards() {
     joueur.prendUneCarte(jeuDeCartes);
     joueur.prendUneCarte(jeuDeCartes);
@@ -165,7 +167,8 @@ outcome.addEventListener("click", () => {
 });
 
 restartBtn.addEventListener("click", () => {
-    joueur.reset()
-    dealer.reset()
-    dom.reset()
+    let temp = cagnotte;
+    start();
+    dealTwoCards()
+    cagnotte = temp
 })

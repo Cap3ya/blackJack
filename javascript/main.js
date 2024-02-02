@@ -26,6 +26,30 @@ function start() {
     dom.informations.textContent = "Start"
 }
 
+function restart(){
+    let temp = cagnotte;
+    start();
+    dealTwoCards()
+    mBtn.forEach(btn => btn.style.display = "inline");
+    newCard.style.display = "none";
+    outcome.style.display = "none";
+    restartBtn.style.display = "none";
+    mBtn.forEach(btn => {
+        btn.addEventListener('click', function (event) {
+            mise = parseInt(event.target.textContent.split("$")[1]);
+
+            
+            mBtn.forEach(btn => btn.style.display = "none");
+            newCard.style.display = "inline";
+            outcome.style.display = "inline";
+            restartBtn.style.display = "inline";
+
+            updateCagnote(cagnotte, mise);
+        });
+    });
+
+    cagnotte = temp;
+}
 
 
 function dealTwoCards() {
@@ -62,29 +86,34 @@ function outcomes() {
     if (joueur.points > 21) {
         outcome = 'You Lose'
         multiplicator = 0;
-        profitCalculator(mise, multiplicator);
+        profitCalculator(mise, multiplicator)
+        restart();
     }
     else if (joueur.points == 21) {
         outcome = `Tu as gagné 1.5x ta mise`;
         multiplicator = 1.5;
         profitCalculator(mise, multiplicator);
+        restart()
     }
     else {
         if (dealer.points > 21) {
             outcome = `Tu as gagné 1x ta mise`;
             multiplicator = 2
             profitCalculator(mise, multiplicator);
+            restart();
         }
         else {
             if (joueur.points > dealer.points) {
                 outcome = `Tu as gagné 1x ta mise`;
                 multiplicator = 2;
                 profitCalculator(mise, multiplicator);
+                restart();
             }
             else {
                 outcome = `Tu as perdu ta mise`;
                 multiplicator = 0;
                 profitCalculator(mise, multiplicator);
+                restart();
             }
         }
     }
@@ -170,8 +199,5 @@ outcome.addEventListener("click", () => {
 });
 
 restartBtn.addEventListener("click", () => {
-    let temp = cagnotte;
-    start();
-    dealTwoCards()
-    cagnotte = temp
+    restart();
 })

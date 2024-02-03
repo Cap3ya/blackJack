@@ -66,7 +66,7 @@ function joueurMise(mise) {
     if (mise > joueur.cagnotte) {
         dom.informations.textContent = "Pas de bras, pas de Chocolat!";
     } else {
-        joueur.setMise(mise);
+        joueur.addToMise(mise);
         dom.miseBtns.forEach(btn => btn.hidden = true);
         dom.hitBtn.hidden = false;
         dom.standBtn.hidden = false;
@@ -93,11 +93,11 @@ function stand() {
 }
 
 function double() {
-    joueur.setMise(joueur.mise * 2);
-    joueur.prendUneCarte(jeuDeCartes);
-
-    if (joueur.points >= 21) {
-        dealerPrendCartes()
+    if (joueur.mise > joueur.cagnotte) {
+        dom.informations.textContent = "Pas de bras, pas de Chocolat!";
+    } else {
+        joueur.addToMise(joueur.mise);
+        hit();
     }
 }
 
@@ -122,24 +122,24 @@ function outcomes() {
     else if (joueur.points == 21) {
         if (dealer.points == 21) {
             outcome = "Tu es remboursé $" + joueur.mise;
-            joueur.setCagnotte(joueur.mise);
+            joueur.addToCagnotte(joueur.mise);
         }
         outcome = "Tu as gagné $" + (joueur.mise * 3 / 2);
-        joueur.setCagnotte((1 + 1.5) * joueur.mise);
+        joueur.addToCagnotte((1 + 1.5) * joueur.mise);
     }
     else {
         if (dealer.points > 21) {
             outcome = "Tu as gagné $" + joueur.mise;
-            joueur.setCagnotte(2 * joueur.mise);
+            joueur.addToCagnotte(2 * joueur.mise);
         }
         else {
             if (joueur.points > dealer.points) {
                 outcome = "Tu as gagné $" + joueur.mise;
-                joueur.setCagnotte(2 * joueur.mise);
+                joueur.addToCagnotte(2 * joueur.mise);
             }
             else if (joueur.points == dealer.points) {
                 outcome = "Tu es remboursé $" + joueur.mise;
-                joueur.setCagnotte(joueur.mise);
+                joueur.addToCagnotte(joueur.mise);
             }
             else {
                 outcome = "Tu as perdu $" + joueur.mise;

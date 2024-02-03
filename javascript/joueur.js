@@ -39,15 +39,15 @@ class Joueur {
         }
     }
 
-    setCagnotte(profitLoss) {
-        this.cagnotte += profitLoss;
+    addToCagnotte(mise) {
+        this.cagnotte += mise;
         dom.cagnotteJoueur.textContent = this.cagnotte.toLocaleString();
     }
 
-    setMise(value) {
-        this.mise = value;
+    addToMise(value) {
+        this.mise += value;
+        this.addToCagnotte(-value)
         dom.miseJoueur.textContent = this.mise.toLocaleString()
-        this.setCagnotte(-this.mise)
     }
 
     reset() {

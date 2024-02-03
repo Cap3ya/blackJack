@@ -93,9 +93,12 @@ body {
             color: blue;
         }
 
-        & a {
-            text-decoration: none;
-            color: inherit;
+        & > div {
+            gap: 2em; 
+            & a {
+                text-decoration: none;
+                color: inherit;
+            }
         }
     }
 }

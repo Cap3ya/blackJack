@@ -104,7 +104,7 @@ function dealerPrendCartes() {
 
     do {
         dealer.prendUneCarte(jeuDeCartes);
-    } while (Math.random() > dealer.points / 21)
+    } while (dealer.points < 17)
 
     outcomes();
 }

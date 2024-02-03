@@ -32,9 +32,12 @@ a {
 }
 
 /*MARGIN*/
-p, button:nth-of-type(n+2), .cartes .carte:nth-of-type(n+2) {
+p,
+button:nth-of-type(n+2),
+.cartes .carte:nth-of-type(n+2) {
     margin-left: .5em;
 }
+
 #buttons {
     margin-top: 0.5em;
 }
@@ -45,16 +48,21 @@ p, button:nth-of-type(n+2), .cartes .carte:nth-of-type(n+2) {
     font-weight: 500;
 }
 
-button {
-    font-size: inherit;
-    border-radius: 5px;
-    color: inherit;
-    height: 2.5em;
-    width: 5em;
+#buttons {
+    width: 100%;
 
-    &:hover {
-        cursor: pointer;
-        color: var(--red);
+    & button {
+        flex-shrink: 1;
+        flex-basis: 5em;
+        font-size: inherit;
+        border-radius: 5px;
+        color: inherit;
+        height: 2.5em;
+
+        &:hover {
+            cursor: pointer;
+            color: var(--red);
+        }
     }
 }
 

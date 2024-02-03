@@ -8,6 +8,11 @@
     padding: 0;
 }
 
+:root {
+    --blue: rgb(0, 132, 255);
+    --red: rgb(255, 0, 4);
+}
+
 .flex {
     gap: .5em;
     display: flex;
@@ -35,11 +40,13 @@ a {
 button {
     font-size: inherit;
     border-radius: 5px;
+    color: inherit;
     height: 2.5em;
     width: 5em;
 
     &:hover {
         cursor: pointer;
+        color: var(--red);
     }
 }
 
@@ -51,22 +58,21 @@ body {
     color: white;
     margin: 0 auto;
 
-    header {
+    & header {
         height: 10vh;
 
         & .red {
-            color: red;
+            color: var(--red);
         }
     }
 
-    main {
+    & main {
         flex: 1;
         padding: 1em;
         color: black;
-        width: calc(100% - 2em);
         border-radius: 5px;
+        width: calc(100% - 2em);
         background-color: rgb(200, 200, 200);
-
 
         & .joueur {
             flex: 1;
@@ -75,29 +81,39 @@ body {
             & .cartes {
                 flex: 1;
                 width: 100%;
-    
-                &>img {
-                    max-height: 20vh;
-                    max-width: 20%;
+                height: 15em;
+                max-width: 100%;
+
+                & .carte {
+                    flex-basis: 10em;
+                    flex-shrink: 1;
+
+                    &>img {
+                        height: auto;
+                        width: 100%;
+                    }
                 }
             }
         }
-
-        
     }
 
     footer {
         height: 10vh;
 
         & #blueTeam {
-            color: blue;
+            color: var(--blue);
         }
 
-        & > div {
-            gap: 2em !important; 
+        &>div {
+            gap: 2em !important;
+
             & a {
                 text-decoration: none;
                 color: inherit;
+
+                &:hover {
+                    color: var(--blue);
+                }
             }
         }
     }

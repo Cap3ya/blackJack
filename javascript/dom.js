@@ -20,16 +20,22 @@ const dom = {
 
     appendCartesJoueur(carte) {
         const root = this.cartesJoueur;
+        const div = document.createElement('div');
+        div.className = 'carte'
         const img = document.createElement('img');
         img.src = carte.src;
-        root.appendChild(img)
+        div.appendChild(img)
+        root.appendChild(div)
     },
 
     appendCartesDealer(carte) {
         const root = this.cartesDealer;
+        const div = document.createElement('div');
+        div.className = 'carte'
         const img = document.createElement('img');
         img.src = carte.src;
-        root.appendChild(img)
+        div.appendChild(img)
+        root.appendChild(div)
     },
 
     appendPointsJoueur(point) {

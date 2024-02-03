@@ -38,8 +38,6 @@ body {
                 flex: 1;
                 height: 100%;
                 width: auto;
-                animation-name: slideFromRight;
-                animation-duration: 500ms;
             }
         }
     }
@@ -51,9 +49,4 @@ body {
             text-align: center;
         }
     }
-}
-
-@keyframes slideFromRight {
-    0% {opacity: 0}
-    100% {opacity: 1}
 }

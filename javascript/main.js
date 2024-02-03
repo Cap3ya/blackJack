@@ -27,10 +27,6 @@ dom.buttonsOnClick(target => {
             double()
             break;
 
-        case "Outcome":
-            outcomes();
-            break;
-
         case "Restart":
             start();
             break;

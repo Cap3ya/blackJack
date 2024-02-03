@@ -96,10 +96,10 @@ body {
 
             & .cartes {
                 flex: 1;
-                height: 25vh;
+                height: 24vh;
 
                 & .carte {
-                    flex-basis: calc(25vh*2/3);
+                    flex-basis: calc(24vh*2/3);
                     flex-shrink: 1;
 
                     &>img {

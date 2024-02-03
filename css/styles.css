@@ -14,7 +14,6 @@
 }
 
 .flex {
-    gap: .5em;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -32,6 +31,15 @@ a {
     font-family: contrailone;
 }
 
+/*MARGIN*/
+p, button:nth-of-type(n+2), .cartes .carte:nth-of-type(n+2) {
+    margin-left: .5em;
+}
+#buttons {
+    margin-top: 0.5em;
+}
+
+/*FONT WEIGHT*/
 #cagnotteJoueur,
 #miseJoueur {
     font-weight: 500;
@@ -52,6 +60,7 @@ button {
 
 body {
     background-color: rgb(10, 10, 10);
+    height: 100vh;
     font-family: system-ui;
     max-width: 1280px;
     min-height: 100vh;
@@ -79,14 +88,14 @@ body {
 
             & .cartes {
                 flex: 1;
-                height: 15em;
+                height: 25vh;
 
                 & .carte {
-                    flex-basis: 10em;
+                    flex-basis: calc(25vh*2/3);
                     flex-shrink: 1;
 
                     &>img {
-                        height: auto;
+                        max-height: 15em;
                         width: 100%;
                     }
                 }
@@ -102,7 +111,7 @@ body {
         }
 
         &>div {
-            gap: 2em !important;
+            gap: 2em;
 
             & a {
                 text-decoration: none;

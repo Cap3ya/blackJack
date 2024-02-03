@@ -121,11 +121,22 @@ function outcomes() {
     }
     else if (joueur.points == 21) {
         if (dealer.points == 21) {
-            outcome = "Tu es remboursé $" + joueur.mise;
-            joueur.addToCagnotte(joueur.mise);
+            if (dealer.cartes.length < joueur.cartes.length) {
+                outcome = "Tu as perdu $" + joueur.mise;
+            }
+            else if (dealer.cartes.length == joueur.cartes.length) {
+                outcome = "Tu es remboursé $" + joueur.mise;
+                joueur.addToCagnotte(joueur.mise);
+            }
+            else {
+                outcome = "Tu as gagné $" + (joueur.mise * 3 / 2);
+                joueur.addToCagnotte((1 + 1.5) * joueur.mise);
+            }
         }
-        outcome = "Tu as gagné $" + (joueur.mise * 3 / 2);
-        joueur.addToCagnotte((1 + 1.5) * joueur.mise);
+        else {
+            outcome = "Tu as gagné $" + (joueur.mise * 3 / 2);
+            joueur.addToCagnotte((1 + 1.5) * joueur.mise);
+        }
     }
     else {
         if (dealer.points > 21) {
